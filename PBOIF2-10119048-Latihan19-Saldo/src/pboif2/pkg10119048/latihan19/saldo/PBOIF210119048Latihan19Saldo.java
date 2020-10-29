@@ -5,6 +5,8 @@
  */
 package pboif2.pkg10119048.latihan19.saldo;
 
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.Scanner;
 
 /**
@@ -23,6 +25,14 @@ public class PBOIF210119048Latihan19Saldo {
     public static void main(String[] args) {
         // TODO code application logic here
         Scanner input = new Scanner(System.in);
+        DecimalFormat kursIndonesia = (DecimalFormat) DecimalFormat.getCurrencyInstance();
+        DecimalFormatSymbols formatRp = new DecimalFormatSymbols();
+
+        formatRp.setCurrencySymbol("Rp. ");
+        formatRp.setMonetaryDecimalSeparator(',');
+        formatRp.setGroupingSeparator('.');
+
+        kursIndonesia.setDecimalFormatSymbols(formatRp);
         
         int lama, i;
         String hasil;
@@ -40,8 +50,9 @@ public class PBOIF210119048Latihan19Saldo {
         System.out.println(bunga);
      
         for (i=1;i<=lama;i++){
-             saldoTotal = saldoAwal + (bunga * saldoAwal);
-             System.out.println("Saldo dibulan ke-" + i +" " + saldoTotal);
+             saldoTotal = saldoAwal + (0.15 * saldoAwal);
+              System.out.printf("Saldo di bulan ke-" + i + " %s %n", kursIndonesia.format(saldoTotal));
+             saldoAwal = saldoTotal;
     }
         System.out.println("==========================================");
         System.out.println("Developed by : Mochammad Faishal");;
